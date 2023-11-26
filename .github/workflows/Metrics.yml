@@ -19,7 +19,7 @@ jobs:
           # GitHub Personal Access Token，用于授权生成报告
           token: ${{ secrets.ACCESS_TOKEN }}
           # 要生成报告的用户名称
-          user: draco-china
+          user: xuanranran
           # 时区设置
           config_timezone: Asia/Shanghai
           # 显示风格（注释掉表示使用默认设置）
@@ -70,7 +70,7 @@ jobs:
           # plugin_pagespeed_detailed: yes
           # plugin_pagespeed_pwa: yes
           # plugin_pagespeed_screenshot: yes
-          # plugin_pagespeed_url: draco.icu
+          # plugin_pagespeed_url: xuanranran.icu
 
       - name: Delete old workflow runs
         uses: GitRML/delete-workflow-runs@main
