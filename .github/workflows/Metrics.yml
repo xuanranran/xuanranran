@@ -1,0 +1,79 @@
+name: Metrics
+
+on:
+  # 定时更新，每天凌晨0点
+  schedule: [{cron: "0 0 * * *"}]
+  # 手动触发，也可以在代码库的 "master" 或 "main" 分支上推送时自动触发
+  workflow_dispatch:
+  push: {branches: ["master", "main"]}
+
+jobs:
+  github-metrics:
+    runs-on: ubuntu-latest
+    permissions:
+      contents: write
+    steps:
+      # 使用 lowlighter/metrics Action 生成活动指标报告
+      - uses: lowlighter/metrics@latest
+        with:
+          # GitHub Personal Access Token，用于授权生成报告
+          token: ${{ secrets.ACCESS_TOKEN }}
+          # 要生成报告的用户名称
+          user: draco-china
+          # 时区设置
+          config_timezone: Asia/Shanghai
+          # 显示风格（注释掉表示使用默认设置）
+          # config_display: columns
+          # 提交信息
+          committer_message: "chore: update metrics"
+          # 报告模板
+          template: classic
+          # 基本模块（用户信息）
+          base: header, activity, community, repositories, metadata
+          # 插件：个人介绍
+          plugin_introduction: yes
+          # 插件：3D IsoCalendar
+          plugin_isocalendar: yes
+          plugin_isocalendar_duration: full-year
+          # 插件：编程语言使用情况
+          plugin_languages: yes
+          plugin_languages_details: bytes-size, percentage
+          # 插件：成就
+          # plugin_achievements: yes
+          # plugin_achievements_threshold: X
+          # plugin_achievements_display: detailed
+          # 插件：日历
+          # plugin_calendar: yes
+          # plugin_calendar_limit: 11
+          # 插件：活动习惯
+          plugin_habits: yes
+          plugin_habits_facts: yes
+          plugin_habits_charts: yes
+          # 插件：开源许可证
+          # plugin_licenses: yes
+          # plugin_licenses_setup: npm ci
+          # 插件：3D Skyline
+          # plugin_skyline: yes
+          # plugin_skyline_frames: 120
+          # plugin_skyline_quality: 1
+          # 插件：Star 活动
+          # plugin_stargazers: yes
+          # plugin_stargazers_charts_type: chartist
+          # 插件：支持
+          # plugin_support: yes
+          # 插件：主题
+          plugin_topics: yes
+          plugin_topics_limit: 0
+          plugin_topics_mode: icons
+          # 插件：页面速度
+          # plugin_pagespeed: yes
+          # plugin_pagespeed_detailed: yes
+          # plugin_pagespeed_pwa: yes
+          # plugin_pagespeed_screenshot: yes
+          # plugin_pagespeed_url: draco.icu
+
+      - name: Delete old workflow runs
+        uses: GitRML/delete-workflow-runs@main
+        with:
+          keep_minimum_runs: 1
+          token: ${{ secrets.ACCESS_TOKEN }}
