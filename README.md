@@ -4,8 +4,6 @@
 <img src="https://count.getloli.com/get/@xuanranran.github.readme" style="float: right; margin-bottom: 1%" width="35%">
 </div>
 
-![](./src/header.png)
-
 <img src="https://github-readme-streak-stats.herokuapp.com?user=xuanranran&theme=dark&hide_border=true&date_format=%5BY.%5Dn.j" width="100%"></img>
 
 <!--   profile-green-animate -->
