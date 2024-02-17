@@ -2,7 +2,7 @@ name: Metrics
 
 on:
   # 定时更新，每天凌晨0点
-  schedule: [{cron: "0 0 * * *"}]
+  # schedule: [{cron: "0 0 * * *"}]
   # 手动触发，也可以在代码库的 "master" 或 "main" 分支上推送时自动触发
   workflow_dispatch:
   push: {branches: ["master", "main"]}
